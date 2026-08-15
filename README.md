@@ -160,6 +160,28 @@ The analytical engine of this model relies on 12 distinct DAX measures spanning 
 - **Filter Context:** Responsive to the dashboard's cross-filters, dynamically recalculating the average based on the active dimensionality (e.g. slicing by "FTP" protocol).
 - **Dashboard Usage:** Utilized in scatter plots on the Diagnostic Analysis page to spot outliers.
 
+## Professional Power BI Dashboards
+
+The visualization layer is divided into three distinct pages, designed with a dark-themed Security Operations Center (SOC) aesthetic to reduce eye strain and highlight critical alerts.
+
+**1. Executive Overview (SOC Threat Intelligence)**
+- **Purpose:** To provide immediate, high-level visibility into the network's security posture.
+- **Key Visuals:** Features core KPI cards (Total Events, Malicious Events, Attack Rate %, MoM Growth %), a trend line mapping attack velocity over time, and a clustered bar chart ranking attack categories.
+- **Interactivity:** A Date slicer allows leadership to isolate specific timeframes, dynamically updating all KPIs.
+
+**2. Detailed Analysis (Protocol & Payload Analytics)**
+- **Purpose:** To drill down into the mechanics of the attacks, specifically how data is being moved across the network.
+- **Key Visuals:** A donut chart showing payload distribution, a matrix visual enabling drill-down from attack category to specific protocols, and a filtered column chart isolating vulnerabilities.
+- **Interactivity:** Slicers and cross-filtering allow analysts to click a specific protocol (e.g. HTTP) and instantly see its payload footprint and associated attack categories.
+
+**3. Diagnostic Analysis (Threat Diagnostics & Outliers)**
+- **Purpose:** To utilize advanced analytics and machine learning to identify the root causes and statistical drivers behind malicious traffic.
+- **Key Visuals:**
+  - A **Scatter Plot** maps average connection duration against payload size to identify outliers (e.g. "low-and-slow" attacks).
+  - An **AI Key Influencers** visual statistically identifies which network states (e.g. INT) and protocols (e.g. UDP) are most likely to result in an attack.
+  - A **Ribbon Chart** tracks how the rank and priority of different attack categories shift over the timeline.
+- **Usability:** Tooltips and clean visual hierarchies ensure complex diagnostic data is easily readable for non-technical stakeholders.
+
 ## Repository Structure
 
 ```
@@ -185,5 +207,5 @@ DSA3050-PowerBI-669710/
 - [x] Section B: Power Query – Data Cleaning & Transformation
 - [x] Section C: Data Modelling
 - [x] Section D: DAX & Business Calculations
-- [ ] Section E: Professional Power BI Dashboards
+- [x] Section E: Professional Power BI Dashboards
 - [ ] Section F: GitHub, Screenshots & Documentation
