@@ -210,4 +210,4 @@ DSA3050-PowerBI-669710/
 - [x] Section C: Data Modelling
 - [x] Section D: DAX & Business Calculations
 - [x] Section E: Professional Power BI Dashboards
-- [ ] Section F: GitHub, Screenshots & Documentation
+- [x] Section F: GitHub, Screenshots & Documentation
