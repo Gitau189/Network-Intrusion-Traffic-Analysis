@@ -102,6 +102,16 @@ To design a Business Intelligence solution for a network security team that iden
 - **Reason:** To extract descriptive attributes into a standalone dimension table, establishing the foundation for a one-to-many relationship with the primary fact table.
 - **Result:** A unique `DimAttack` dimension table is ready for the data model.
 
+## Data Modelling
+
+The analytical model utilizes a Star Schema architecture designed to optimize query performance for security metric evaluation.
+
+- **FactTraffic:** Forms the center of the model. It contains the transactional network logs, packet metrics, and connection durations. This was selected as the fact table because it holds the continuous, measurable events.
+- **DimAttack:** A dedicated dimension table created to filter the fact table by specific offensive security categories (e.g. Exploits, DoS, Fuzzers) and generalized traffic types (Attack vs. Normal).
+- **DimDate:** A dedicated calendar table constructed via DAX to enable precise time-intelligence calculations (e.g. assessing threat velocity over time).
+- **Relationships:** Standard One-to-Many (1:*) relationships were established between each dimension table and FactTraffic.
+- **Cardinality & Filtering:** Cross-filter direction is set to Single (from Dimensions to Fact) to avoid ambiguous filter paths and ensure predictable DAX aggregations.
+
 ## Repository Structure
 
 ```
@@ -124,8 +134,8 @@ DSA3050-PowerBI-669710/
 ## Project Sections
 
 - [x] Section A: Dataset Selection & Understanding
-- [ ] Section B: Power Query – Data Cleaning & Transformation
-- [ ] Section C: Data Modelling
+- [x] Section B: Power Query – Data Cleaning & Transformation
+- [x] Section C: Data Modelling
 - [ ] Section D: DAX & Business Calculations
 - [ ] Section E: Professional Power BI Dashboards
 - [ ] Section F: GitHub, Screenshots & Documentation
