@@ -112,6 +112,8 @@ The analytical model utilizes a Star Schema architecture designed to optimize qu
 - **Relationships:** Standard One-to-Many (1:*) relationships were established between each dimension table and FactTraffic.
 - **Cardinality & Filtering:** Cross-filter direction is set to Single (from Dimensions to Fact) to avoid ambiguous filter paths and ensure predictable DAX aggregations.
 
+![Star Schema Data Model](screenshots/03_model.png)
+
 ## Repository Structure
 
 ```
