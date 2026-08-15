@@ -81,6 +81,13 @@ To design a Business Intelligence solution for a network security team that iden
 - **Reason:** Renaming fields appropriately ensures that the final dashboard is user-friendly and that business users can easily understand the metrics without needing a data dictionary.
 - **Result:** Column headers are now descriptive, plain-English terms.
 
+**Transformation 6: Generating a Sequential Timestamp**
+
+- **Problem:** The dataset lacked explicit date/time information (only recording transaction durations), which is fundamentally required for time-intelligence analysis and DimDate modeling.
+- **Transformation:** Generated a synthetic sequential `Timestamp` by creating an Index column and applying a custom M-code formula (`#datetime(2026, 1, 1, 0, 0, 0) + #duration(0, 0, [Index], 0)`) to increment the time by one minute per transaction log, then typed the result as Date/Time and removed the now-unneeded Index column.
+- **Reason:** This advanced transformation ensures the dataset supports time-series analysis and fulfills the requirement for constructing a relational Date Table for DAX time-intelligence metrics.
+- **Result:** A fully functional `Timestamp` column was successfully integrated and typed as Date/Time.
+
 ## Repository Structure
 
 ```
