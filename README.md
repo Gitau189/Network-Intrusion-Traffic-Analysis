@@ -88,6 +88,20 @@ To design a Business Intelligence solution for a network security team that iden
 - **Reason:** This advanced transformation ensures the dataset supports time-series analysis and fulfills the requirement for constructing a relational Date Table for DAX time-intelligence metrics.
 - **Result:** A fully functional `Timestamp` column was successfully integrated and typed as Date/Time.
 
+**Transformation 7: Cleaning Text (Uppercase Service Names)**
+
+- **Problem:** The `service` column contained lowercase acronyms (e.g. "dns", "http"), which look informal and unprofessional on a dashboard interface.
+- **Transformation:** Used **Transform → Format → UPPERCASE** to standardize the text.
+- **Reason:** Text cleaning and standardization ensure that slicers and chart labels are legible and adhere to professional presentation standards.
+- **Result:** All recognized application-layer services are capitalized correctly (e.g. "DNS", "HTTP").
+
+**Transformation 8: Creating a Dimension Table (Reference Query)**
+
+- **Problem:** The dataset was imported as a single flat table, which violates the requirement for a dimensional Star Schema data model.
+- **Transformation:** Created a Reference query named `DimAttack`, retained only the `attack_cat` and `Traffic_Type` columns, and applied **Remove Duplicates**.
+- **Reason:** To extract descriptive attributes into a standalone dimension table, establishing the foundation for a one-to-many relationship with the primary fact table.
+- **Result:** A unique `DimAttack` dimension table is ready for the data model.
+
 ## Repository Structure
 
 ```
