@@ -46,6 +46,13 @@ To design a Business Intelligence solution for a network security team that iden
 
 ## Power Query Transformations
 
+**Transformation 1: Removing the Redundant ID Column**
+
+- **Problem:** The dataset included an `id` column which merely acted as a row index and offered no analytical value.
+- **Transformation:** Used right-click → **Remove Column** on the `id` field.
+- **Reason:** Removing unnecessary columns reduces the dataset's memory footprint and optimizes the data model for faster rendering.
+- **Result:** The `id` column was successfully removed from the dataset.
+
 **Transformation 2: Identifying Unknown Network Services**
 
 - **Problem:** The `service` column contained a massive number of hyphens (`-`). In network engineering, this represents traffic where the specific application-layer protocol (e.g. HTTP, DNS, FTP) wasn't recognized by the packet sniffer.
