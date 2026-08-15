@@ -114,6 +114,52 @@ The analytical model utilizes a Star Schema architecture designed to optimize qu
 
 ![Star Schema Data Model](screenshots/03_model.png)
 
+## DAX & Business Calculations
+
+The analytical engine of this model relies on 12 distinct DAX measures spanning core aggregations, derived business metrics, and advanced time-intelligence functions. Below is the documentation for the six most critical measures used in this solution.
+
+**1. Total Malicious Events**
+- **What it calculates:** The absolute count of network connection logs flagged specifically as attacks.
+- **Why it is useful:** It isolates the primary threat metric, allowing security analysts to immediately see the sheer volume of attacks hitting the network.
+- **Main DAX functions:** `CALCULATE()`, `COUNTROWS()` (via referenced measure).
+- **Filter Context:** `CALCULATE` modifies the default filter context by explicitly enforcing `DimAttack[Traffic_Type] = "Attack"`, ignoring normal traffic regardless of visual level filters.
+- **Dashboard Usage:** Used in the Executive Overview KPI cards and the trend line charts.
+
+**2. Attack Rate %**
+- **What it calculates:** The percentage of total network traffic that is classified as malicious.
+- **Why it is useful:** Volume alone is misleading; this ratio provides true threat density, indicating if an influx of traffic is standard business operation or a coordinated DDoS/botnet attack.
+- **Main DAX functions:** `VAR`, `RETURN`, `DIVIDE()`.
+- **Filter Context:** Evaluates the row/filter context of the visual it is placed in (e.g. if placed in a table by Region, it calculates the attack rate specifically for that Region).
+- **Dashboard Usage:** Displayed as a primary KPI card and used in gauge/donut charts.
+
+**3. Previous Month Malicious Events**
+- **What it calculates:** The count of attack events that occurred in the calendar month strictly prior to the current context.
+- **Why it is useful:** It provides a historical baseline necessary for measuring short-term threat growth or the effectiveness of newly implemented firewall rules.
+- **Main DAX functions:** `CALCULATE()`, `PREVIOUSMONTH()`.
+- **Filter Context:** Uses the `DimDate` table to shift the current date filter context back by exactly one month, allowing side-by-side comparison with current-month metrics.
+- **Dashboard Usage:** Primarily acts as a hidden calculation for the MoM Growth metric, but can be used in matrix visuals for side-by-side monthly comparisons.
+
+**4. MoM Attack Growth %**
+- **What it calculates:** The month-over-month percentage increase or decrease in cyberattack volume.
+- **Why it is useful:** This is a critical executive-level metric that indicates whether the organization's security posture is improving (negative growth) or degrading (positive growth).
+- **Main DAX functions:** `VAR`, `RETURN`, `DIVIDE()`.
+- **Filter Context:** Inherits the filter context of the specific month being evaluated in the visual and compares it against the shifted historical context.
+- **Dashboard Usage:** Highlighted in the Executive Overview as a variance KPI indicator (green for negative, red for positive).
+
+**5. Total Payload Volume**
+- **What it calculates:** The sum of all data (in bytes) transferred across the network.
+- **Why it is useful:** Tracking data volume is essential for identifying data exfiltration (where hackers steal massive amounts of internal data).
+- **Main DAX functions:** `SUM()`.
+- **Filter Context:** Fully responsive to any slicers or visual cross-filtering applied on the report page (e.g. slicing by Date or Protocol).
+- **Dashboard Usage:** Used in the Detailed Analysis page to track payload sizes across different attack categories.
+
+**6. Average Payload per Event**
+- **What it calculates:** The mean data size per individual network connection.
+- **Why it is useful:** It helps identify anomalous behaviors. For example, a single connection transferring gigabytes of data is a major red flag compared to millions of tiny ping requests.
+- **Main DAX functions:** `DIVIDE()`.
+- **Filter Context:** Responsive to the dashboard's cross-filters, dynamically recalculating the average based on the active dimensionality (e.g. slicing by "FTP" protocol).
+- **Dashboard Usage:** Utilized in scatter plots on the Diagnostic Analysis page to spot outliers.
+
 ## Repository Structure
 
 ```
@@ -138,6 +184,6 @@ DSA3050-PowerBI-669710/
 - [x] Section A: Dataset Selection & Understanding
 - [x] Section B: Power Query – Data Cleaning & Transformation
 - [x] Section C: Data Modelling
-- [ ] Section D: DAX & Business Calculations
+- [x] Section D: DAX & Business Calculations
 - [ ] Section E: Professional Power BI Dashboards
 - [ ] Section F: GitHub, Screenshots & Documentation
