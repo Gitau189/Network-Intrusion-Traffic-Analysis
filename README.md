@@ -169,6 +169,8 @@ The visualization layer is divided into three distinct pages, designed with a da
 - **Key Visuals:** Features core KPI cards (Total Events, Malicious Events, Attack Rate %, MoM Growth %), a trend line mapping attack velocity over time, and a clustered bar chart ranking attack categories.
 - **Interactivity:** A Date slicer allows leadership to isolate specific timeframes, dynamically updating all KPIs.
 
+![Executive Overview Dashboard](screenshots/04_dashboard_overview.png)
+
 **2. Detailed Analysis (Protocol & Payload Analytics)**
 - **Purpose:** To drill down into the mechanics of the attacks, specifically how data is being moved across the network.
 - **Key Visuals:** A donut chart showing payload distribution, a matrix visual enabling drill-down from attack category to specific protocols, and a filtered column chart isolating vulnerabilities.
