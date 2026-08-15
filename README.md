@@ -74,6 +74,13 @@ To design a Business Intelligence solution for a network security team that iden
 - **Reason:** Converting technical binary flags into descriptive text categories ensures that chart legends and slicers are immediately readable by non-technical stakeholders.
 - **Result:** A new categorical text column clearly distinguishing "Attack" vs "Normal" traffic streams.
 
+**Transformation 5: Renaming Fields Appropriately**
+
+- **Problem:** The dataset utilized technical abbreviations for column headers (e.g. `dur`, `proto`, `spkts`, `dpkts`), which would result in unintuitive labels on dashboard visuals.
+- **Transformation:** Renamed these specific columns to `Duration`, `Protocol`, `Source_Packets`, and `Destination_Packets`.
+- **Reason:** Renaming fields appropriately ensures that the final dashboard is user-friendly and that business users can easily understand the metrics without needing a data dictionary.
+- **Result:** Column headers are now descriptive, plain-English terms.
+
 ## Repository Structure
 
 ```
