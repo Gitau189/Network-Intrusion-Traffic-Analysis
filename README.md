@@ -60,6 +60,13 @@ To design a Business Intelligence solution for a network security team that iden
 - **Reason:** When tracking offensive security metrics or monitoring threat landscapes, unclassified traffic often hides the most interesting anomalies (such as custom reverse shells or non-standard port usage), so it needed to be labelled explicitly instead of left as a vague hyphen.
 - **Result:** The `service` column now contains an explicit `Unknown` category instead of an ambiguous hyphen, making unclassified traffic easy to filter and analyze on its own.
 
+**Transformation 3: Creating a Custom Column (Total Bytes)**
+
+- **Problem:** The dataset separated connection volume into source bytes (`sbytes`) and destination bytes (`dbytes`). Evaluating the overall severity or footprint of a network session requires assessing the total data volume exchanged.
+- **Transformation:** Used **Add Column → Custom Column** to create a `Total_Bytes` field (`[sbytes] + [dbytes]`), and subsequently updated the data type to Whole Number.
+- **Reason:** Creating a unified metric for total payload size simplifies the creation of volume-based KPIs and DAX measures, while correcting the data type ensures Power BI can perform mathematical aggregations on it.
+- **Result:** A new `Total_Bytes` numerical column is available for overarching volume analysis.
+
 ## Repository Structure
 
 ```
