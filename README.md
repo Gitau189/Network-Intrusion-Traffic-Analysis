@@ -44,6 +44,15 @@ To design a Business Intelligence solution for a network security team that iden
 4. How does the duration of an attack correlate with the type of threat?
 5. What are the common network states associated with successful intrusions?
 
+## Power Query Transformations
+
+**Transformation 2: Identifying Unknown Network Services**
+
+- **Problem:** The `service` column contained a massive number of hyphens (`-`). In network engineering, this represents traffic where the specific application-layer protocol (e.g. HTTP, DNS, FTP) wasn't recognized by the packet sniffer.
+- **Transformation:** Right-clicked the `service` column header, selected **Replace Values**, entered `-` as the Value To Find and `Unknown` as the Replace With value.
+- **Reason:** When tracking offensive security metrics or monitoring threat landscapes, unclassified traffic often hides the most interesting anomalies (such as custom reverse shells or non-standard port usage), so it needed to be labelled explicitly instead of left as a vague hyphen.
+- **Result:** The `service` column now contains an explicit `Unknown` category instead of an ambiguous hyphen, making unclassified traffic easy to filter and analyze on its own.
+
 ## Repository Structure
 
 ```
