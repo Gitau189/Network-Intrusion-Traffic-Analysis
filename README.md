@@ -67,6 +67,13 @@ To design a Business Intelligence solution for a network security team that iden
 - **Reason:** Creating a unified metric for total payload size simplifies the creation of volume-based KPIs and DAX measures, while correcting the data type ensures Power BI can perform mathematical aggregations on it.
 - **Result:** A new `Total_Bytes` numerical column is available for overarching volume analysis.
 
+**Transformation 4: Creating a Conditional Column (Traffic Type)**
+
+- **Problem:** The dataset uses a binary integer flag (`label` = 0 or 1) to distinguish between normal and malicious traffic. Binary integers are not intuitive for end-users viewing dashboard legends.
+- **Transformation:** Used **Add Column → Conditional Column** to create a `Traffic_Type` text field mapping 1 to `"Attack"` and 0 to `"Normal"`, then set the column's data type to Text.
+- **Reason:** Converting technical binary flags into descriptive text categories ensures that chart legends and slicers are immediately readable by non-technical stakeholders.
+- **Result:** A new categorical text column clearly distinguishing "Attack" vs "Normal" traffic streams.
+
 ## Repository Structure
 
 ```
